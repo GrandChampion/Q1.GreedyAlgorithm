@@ -1,5 +1,5 @@
 # Nodes are numbered from 0 to n-1
-# There are 2 categories
+# There are 2 category
 
 instance1 = [1, 2, 1, 2, 1]
 similarityMatrix1 = [[0, 2, 7, 3, 5],

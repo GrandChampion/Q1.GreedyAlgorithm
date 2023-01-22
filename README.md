@@ -6,7 +6,7 @@
 ## Examples
 
 ### 1 (Machine Learning) Clustering from worksheet
-#### 1.1 Bruteforce
+#### 1.1 Brute force
 ##### 1.1.1 Making instances
 ```python
 # Each Instance[i] represent which category that node belongs to.
@@ -23,6 +23,33 @@ def costChecker(instance, similarityMatrix):
             if (instance[i] != instance[j] and cost < similarityMatrix[i][j]):
                 cost = similarityMatrix[i][j]
     return cost
+```
+#### 1.2 Greedy clustering
+- Strategy
+  - 1. put each edges into its own category
+  - 2. pick edges that have highest similarity and combine the category
+  - 3. do 1 and 2 until it reaches intended category numbers
+```python
+def greedyClustering(edges):
+    # sort edges in decreasing order based on similarity
+    edges = sorted(edges, key=lambda x: x[2], reverse=True)
+    print(edges)
+
+    # put each node in each categories
+    # number represent which category node is belongs to.
+    category = [0, 1, 2, 3]
+    goalCategories = 2
+
+    i = 0
+
+    # len(Counter(edges).keys()) represents number of unique elements in the list
+    while len(Counter(category).keys()) > goalCategories:
+        # if node1 and node2 belong to different category
+        if (category[edges[i][0]] != category[edges[i][1]]):
+            category[edges[i][1]] = 0
+            category[edges[i][0]] = 0
+        i += 1
+    return category
 ```
 
 ### 2. MST
