@@ -55,20 +55,38 @@ def greedyClustering(edges):
 ### 2. MST
 definition: subset of edges from the graph that connect all vertices without cycle and with minimum total edge cost.
 #### 1.1 Kruskal(Russian)'s algorithm
-```python
+- Strategy
+  - 1. sort the edges in ascending order of weight
+  - 2. pick smallest weighted edge and check if it forms cycle
+  - 3. If it doesn't form the cycle, include it in the MST
+  - 4. iterate 2 and 3 until 
+```pseudocode
+def kruskal(graph, weight list):
+    A = []
+    for each vertex in graph:
+        put it into single list like [[0],[1],[2],[3]]
+    edges = list of edges
+    sort edges in ascending order of weight
 
+    for e of edges:
+        if adding e does not create cycle:
+            A.append(e)
+    return A
 ```
 #### 1.2 Prim(French)'s algorithm
+- Strategy
+  - 1. pick a random node in the beginning
+  - 2. check edges that connects to not yet reached nodes
+  - 3. pick the smallest weight edge among them
+  - 4. iterate 2 and 4 until it includes all nodes in the graph
 ```python
 
 ```
-
-### 3. Interval scheduling
+### 3. Knapsack problem
 ```python
 
 ```
-
-### 4. Knapsack problem
+### 4. Interval scheduling
 ```python
 
 ```
@@ -81,3 +99,4 @@ definition: subset of edges from the graph that connect all vertices without cyc
 asg 22w1 4.1번
 asg 22w2 5.1번
 
+### 3. Induction
