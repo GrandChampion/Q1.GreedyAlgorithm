@@ -4,7 +4,7 @@
 from typing import List
 
 
-def checker(intervals: List[List[int]]) -> bool:
+def overlapChecker(intervals: List[List[int]]) -> bool:
     if len(intervals) == 0:
         return True
     else:

@@ -130,8 +130,67 @@ weight1 = sorted(weight1, key=lambda x: x[1], reverse=True)
 greedyResult = weight1[0][1]+weight1[1][1]
 ```
 ### 4. Interval scheduling
+#### 4.1 Check non of intervals are overlapping
 ```python
+def overlapChecker(intervals: List[List[int]]) -> bool:
+    if len(intervals) == 0:
+        return True
+    else:
+        # sort by starting time of each intervals
+        intervals.sort(key=lambda x: x[0])
+        previousEnd = intervals[0][1]
+        for interval in intervals[1:]:
+            # Check if previous interval's end time and current interval's start time don't overlap
+            if previousEnd <= interval[0]:
+                previousEnd = interval[1]
+            else:
+                return False
+        return True
+```
+#### 4.2 Minimum number of rooms that can accomodate all of intervals
+```python
+def requiredRooms(intervals: List[List[int]]) -> int:
+    startTime = [i[0] for i in intervals]
+    startTime = sorted(startTime)
 
+    endTime = [i[1] for i in intervals]
+    endTime = sorted(endTime)
+
+    maxRequired = 0
+    currentRequired = 0
+
+    curStartTimeIndex = 0
+    curEndTimeIndex = 0
+
+    while curStartTimeIndex < len(intervals):
+        if endTime[curEndTimeIndex] > startTime[curStartTimeIndex]:
+            curStartTimeIndex += 1
+            currentRequired += 1
+        else:
+            curEndTimeIndex += 1
+            currentRequired -= 1
+        maxRequired = max(maxRequired, currentRequired)
+
+    return maxRequired
+```
+#### 4.3 Count minimum number of intervals that overlap
+```python
+def removeOverlappingIntervals(intervals: List[List[int]]) -> int:
+    removed = 0
+    selectedEndTime = intervals[0][1]
+
+    # Sanity check: sort based on start time
+    sorted(intervals, key=lambda x: x[0])
+
+    for interval in intervals[1:]:
+        if interval[0] < selectedEndTime:
+            # remove overlapping interval that ends late
+            removed += 1
+            selectedEndTime = min(selectedEndTime, interval[1])
+        else:
+            # nothing to remove
+            selectedEndTime = interval[1]
+    return removed
 ```
 
 ## Proof technique

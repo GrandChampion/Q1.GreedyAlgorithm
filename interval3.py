@@ -23,4 +23,4 @@ def removeOverlappingIntervals(intervals: List[List[int]]) -> int:
 
 
 print(removeOverlappingIntervals(
-    [[1,2],[2,3],[3,4],[1,3]]))
+    [[1, 2], [2, 3], [3, 4], [1, 3]]))
