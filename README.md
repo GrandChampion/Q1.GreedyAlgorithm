@@ -136,9 +136,25 @@ greedyResult = weight1[0][1]+weight1[1][1]
 
 ## Proof technique
 ### 1. Stays Ahead
+- 1. Define
+  - A: solution from greedy algorithm
+  - O: solution from optimal algorithm
+- 2. list each iteration of both greedy algorithm and optimal algorithm
 
-
+  |$ a_k $|$o_k$|Comparison|
+  |---|---|---|
+  | 3  |  2 |$a_1>o_1$|
+  | 4  |  3 |$a_2>o_2$|
+  |  5 |  4 |$a_3>o_3$|
+- 3. As greedy solution in each iteration stays ahead, greedy solution is the optimal solution.
 ### 2. An Exchange Argument
-asg 22w1 4.1번
-asg 22w2 5.1번
-
+- 1. Define results got from greedy algorithm and optimal algorithm
+  - $A=\{a_1,a_2,a_3,\cdots,a_k\}$
+  - $O=\{o_1,o_2,o_3,\cdots,o_k\}$
+- 2. Find elements that are different between A and O
+  - case1: element in optimal solution does not exist in greedy solution. $o_*$ is not in $A$.
+  - case2: order is different. $\{a_2,a_3\}=\{o_3,o_2\}$
+- 3. Modify optimal solution $O$ to match $A$
+  - case1: delete value that is only in optimal solution. delete $o_*$.
+  - case2: change the order of optimal solution to match greedy solution. $\{o_3\leftrightarrow o_2\}$
+- 4. If modified optimal solution doesn't get worse than original version, then greedy solution is as good as optimal solution.
