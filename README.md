@@ -76,11 +76,23 @@ def kruskal(graph, weight list):
 #### 1.2 Prim(French)'s algorithm
 - Strategy
   - 1. pick a random node in the beginning
-  - 2. check edges that connects to not yet reached nodes
+  - 2. check edges that connects from visited nodes to not yet reached nodes
   - 3. pick the smallest weight edge among them
   - 4. iterate 2 and 4 until it includes all nodes in the graph
 ```python
+def prim(graph: List[List[int]]) -> int:
+    included = [0] * len(graph[0])
+    totalCost = 0
 
+    currentNode = 0
+    while included.count(1) < len(thegraph[0]):
+        minCost = 999
+        for i in range(len(thegraph[0])):
+            if graph[currentNode][i] < minCost and included[i] != 1:
+                totalCost += graph[currentNode][i]
+                included[i] = 1
+                currentNode = i
+    return totalCost
 ```
 ### 3. Knapsack problem
 ```python
@@ -99,4 +111,3 @@ def kruskal(graph, weight list):
 asg 22w1 4.1번
 asg 22w2 5.1번
 
-### 3. Induction
